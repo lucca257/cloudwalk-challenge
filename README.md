@@ -1,6 +1,4 @@
-# cloudwalk-challenge
-
-# Software Engineer test
+# cloudwalk-challenge -- Software Engineer test
 
 > Truth can only be found in one place: the code. <br/>
 > -- Robert C. Martin

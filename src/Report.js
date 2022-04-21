@@ -13,6 +13,7 @@ class Report {
                     total_kills: 0,
                     players: [],
                     kills: [],
+                    death_causes: [],
                 });
             }
             if(line.includes("ClientUserinfoChanged")){
@@ -24,9 +25,9 @@ class Report {
                 let who_killed = this.removeSpaces(line_split[0]);
                 line_split = line_split[1].split(" by ");
                 let who_died = this.removeSpaces(line_split[0]);
-                let death_type = this.removeSpaces(line_split[0]);
-
-                this.registerKill(actual_match, who_killed, who_died, death_type);
+                let death_type = this.removeSpaces(line_split[1]);
+                this.registerKill(actual_match, who_killed, who_died);
+                this.registerDeathCauses(actual_match, death_type);
             }
         }
         console.log(this.matches[1]);
@@ -38,7 +39,7 @@ class Report {
         this.matches[match - 1].players = [...new Set(players)];
     }
 
-    registerKill(match, who_killed, who_died, death_type){
+    registerKill(match, who_killed, who_died){
         let remove_kill = false;
         this.countTotalKills(match)
         if(who_killed === "<world>"){
@@ -60,6 +61,18 @@ class Report {
         });
     }
 
+    registerDeathCauses(match, death_type){
+        let matchDeathCauses = this.findMatchDeathCauses(match, death_type)
+        if(matchDeathCauses){
+            matchDeathCauses.count += 1
+            return;
+        }
+        this.matches[match - 1].death_causes.push({
+            cause: death_type,
+            count: 1,
+        });
+    }
+
     //private functions
     countTotalKills(match){
         this.matches[match - 1].total_kills += 1;
@@ -71,6 +84,10 @@ class Report {
 
     findMatchKills(match,nick_name){
         return this.matches[match - 1].kills.find(el => el.player === nick_name) ?? false
+    }
+
+    findMatchDeathCauses(match, death_type) {
+        return this.matches[match - 1].death_causes.find(el => el.cause === death_type) ?? false
     }
 }
 module.exports = Report;

@@ -29,7 +29,7 @@ class Report {
                 this.registerKill(actual_match, who_killed, who_died, death_type);
             }
         }
-        console.log(this.matches[8]);
+        console.log(this.matches[1]);
     }
 
     registerPlayer(match, nick_name){
@@ -39,13 +39,19 @@ class Report {
     }
 
     registerKill(match, who_killed, who_died, death_type){
+        let remove_kill = false;
         this.countTotalKills(match)
         if(who_killed === "<world>"){
-            return;
+            who_killed = who_died
+            remove_kill = true;
         }
         let matchKills = this.findMatchKills(match, who_killed)
         if(matchKills){
-            matchKills.kills += 1
+            if(remove_kill){
+                matchKills.kills -= 1
+            } else {
+                matchKills.kills += 1
+            }
             return;
         }
         this.matches[match - 1].kills.push({

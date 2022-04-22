@@ -10,11 +10,10 @@ class GameRank {
               this.all_kills.push(player_kills);
           });
       })
-      this.sumPlayerKills()
-      console.log(this.rank)
+      return await this.sumPlayerKills()
   }
 
-  sumPlayerKills() {
+  async sumPlayerKills() {
       this.rank = this.all_kills.reduce((accumulator, cur) => {
           let nick_name = cur.player
           let found = accumulator.find((elem) => {

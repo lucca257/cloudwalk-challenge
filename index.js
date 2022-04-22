@@ -1,17 +1,10 @@
-const file_path = './files/quake.log';
-const express = require('express')
-const FileReader = require('./src/FileReader');
-const Report = require('./src/Report');
-const GameRank = require('./src/Rank');
+const express = require('express');
+const cors = require('cors');
+const routes = require('./routes')
+const app = express();
 
-async function main() {
-    const fileReaderService = new FileReader(file_path);
-    const reportService = new Report();
-    const gameRankService = new GameRank();
+app.use(cors({}))
+app.use(express.json());
+app.use(routes);
 
-    const fileData = await fileReaderService.read();
-    const gameData = await reportService.main(fileData);
-    const rankData = await gameRankService.getRank(gameData);
-}
-
-main();
+app.listen(3000);

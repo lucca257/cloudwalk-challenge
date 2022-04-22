@@ -1,4 +1,4 @@
-const file_path = './qgames.log';
+const file_path = './files/quake.log';
 const express = require('express')
 const FileReader = require('./src/FileReader');
 const Report = require('./src/Report');

@@ -30,7 +30,7 @@ class Report {
                 this.registerDeathCauses(actual_match, death_type);
             }
         }
-        console.log(this.matches[1]);
+        return this.matches;
     }
 
     registerPlayer(match, nick_name){

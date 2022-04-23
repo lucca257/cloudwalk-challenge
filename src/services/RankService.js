@@ -4,16 +4,16 @@ class GameRank {
     this.all_kills = [];
   }
 
-  async getRank(gameData) {
+  async main(gameData) {
       gameData.map(game => {
           game.kills.map(player_kills => {
               this.all_kills.push(player_kills);
           });
       })
-      return await this.sumPlayerKills()
+      return this.sumPlayerKills()
   }
 
-  async sumPlayerKills() {
+  sumPlayerKills() {
       this.rank = this.all_kills.reduce((accumulator, cur) => {
           let nick_name = cur.player
           let found = accumulator.find((elem) => {
@@ -24,6 +24,7 @@ class GameRank {
           return accumulator;
       }, []);
       this.orderRank()
+      return this.rank
   }
 
   orderRank() {

@@ -14,7 +14,6 @@ module.exports = {
         "data": gameData
       })
     } catch (e) {
-      console.log(e)
       return res.json({
         "data": null,
         "message": e.message

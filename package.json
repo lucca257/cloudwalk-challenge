@@ -1,18 +1,18 @@
 {
   "name": "cloudwalk-challenge",
   "version": "1.0.0",
-  "description": "> Truth can only be found in one place: the code. <br/> > -- Robert C. Martin",
+  "description": "Challenge for Cloudwalk",
   "main": "index.js",
   "scripts": {
-    "dev" : "nodemon ./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./index.js",
+    "test": "jest --config jest.config.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lucca257/cloudwalk-challenge.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Pedro lucca leonardo de almeida",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lucca257/cloudwalk-challenge/issues"
@@ -21,7 +21,12 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15",
-    "readline": "^1.3.0"
+    "readline": "^1.3.0",
+    "supertest": "^6.2.2"
+  },
+  "devDependencies": {
+
   }
 }

@@ -28,6 +28,17 @@ describe('unit report game test', () => {
         const match_players_list = ReportService.matches[0].players
         expect(match_players_list).toStrictEqual(mock_players)
     });
+
+    test("shouldn't register the same player twice", () => {
+        const mock_players = ['Isgalamido','Isgalamido','Pedrinho']
+        ReportService._initMatch(1)
+        mock_players.forEach(player => {
+            ReportService.registerPlayer(1,player)
+        })
+        const match_players_list = ReportService.matches[0].players
+        expect(match_players_list.length).toStrictEqual(2)
+    });
+
     //
     // test('should register player kills', () => {});
     //

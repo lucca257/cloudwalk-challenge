@@ -18,7 +18,7 @@ class Report {
                 const kill_info = this._getKillInformation(line)
                 this.registerKill(actual_match, kill_info.killer, kill_info.killed)
                 this.countTotalKills(actual_match)
-                this.registerDeathCauses(actual_match, kill_info.cause);
+                this.registerDeathCauses(actual_match, kill_info.death_cause);
             }
         }
         return this.matches;

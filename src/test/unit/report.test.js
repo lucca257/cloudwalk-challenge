@@ -89,10 +89,38 @@ describe('unit report game test', () => {
         const match_players_kills = ReportService.matches[0].kills
         expect(match_players_kills).toStrictEqual(expected_result)
     });
-    //
-    // test('should count total players kills', () => {});
-    //
-    // test('should register death causes', () => {});
-    //
+
+    test('should register death causes', () => {
+        const mock_match_log_data = [
+            "22:17 Kill: 2 2 7: Isgalamido killed Isgalamido by MOD_ROCKET_SPLASH",
+            "22:18 Kill: 2 2 7: Isgalamido killed Isgalamido by MOD_ROCKET_SPLASH",
+            "1:32 Kill: 1022 4 22: <world> killed Isgalamido by MOD_TRIGGER_HURT",
+            "22:17 Kill: 2 2 7: Isgalamido killed Isgalamido by MOD_FALLING",
+            "22:18 Kill: 2 2 7: Isgalamido killed Isgalamido by MOD_FALLING",
+            "1:32 Kill: 1022 4 22: <world> killed Isgalamido by MOD_TRIGGER_HURT",
+        ]
+        const expected_result = [
+            {
+                cause: 'MOD_ROCKET_SPLASH',
+                count: 2
+            },
+            {
+                cause: 'MOD_TRIGGER_HURT',
+                count: 2
+            },
+            {
+                cause: 'MOD_FALLING',
+                count: 2
+            }
+        ]
+        ReportService._initMatch(1)
+        mock_match_log_data.forEach(line => {
+            const kill_information = ReportService._getKillInformation(line)
+            ReportService.registerDeathCauses(1, kill_information.death_cause)
+        })
+        const match_death_causes = ReportService.matches[0].death_causes
+        expect(match_death_causes).toStrictEqual(expected_result)
+    });
+
     // test('should have total match games of log file', () => {});
 });

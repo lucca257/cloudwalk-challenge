@@ -21,13 +21,9 @@ class Report {
                 this.registerPlayer(actual_match,player_nickname)
             }
             if(line.includes("Kill")){
-                let line_split = line.split(":")[3].split(" killed ");
-                let who_killed = this.removeSpaces(line_split[0]);
-                line_split = line_split[1].split(" by ");
-                let who_died = this.removeSpaces(line_split[0]);
-                let death_type = this.removeSpaces(line_split[1]);
-                this.registerKill(actual_match, who_killed, who_died);
-                this.registerDeathCauses(actual_match, death_type);
+                const kill_info = this._getKillInformation(line)
+                this.registerKill(actual_match, kill_info.killer, kill_info.killed)
+                this.registerDeathCauses(actual_match, kill_info.cause);
             }
         }
         return this.matches;

@@ -8,13 +8,7 @@ class Report {
         for await (let line of lines) {
             if(line.includes("InitGame")){
                 actual_match++;
-                this.matches.push({
-                    match: actual_match,
-                    total_kills: 0,
-                    players: [],
-                    kills: [],
-                    death_causes: [],
-                });
+                this._initMatch(actual_match);
             }
             if(line.includes("ClientUserinfoChanged")){
                 let player_nickname = this._getPlayerNickname(line);
@@ -99,6 +93,16 @@ class Report {
             killed: this.removeSpaces(line_split[0]),
             death_cause: this.removeSpaces(line_split[1]),
         };
+    }
+
+    _initMatch(actual_match){
+        this.matches.push({
+            match: actual_match,
+            total_kills: 0,
+            players: [],
+            kills: [],
+            death_causes: [],
+        });
     }
 }
 module.exports = Report;

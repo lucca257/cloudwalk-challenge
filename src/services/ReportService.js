@@ -17,8 +17,8 @@ class Report {
                 });
             }
             if(line.includes("ClientUserinfoChanged")){
-                let player_nick_name = line.split("n\\")[1].split("\\")[0];
-                this.registerPlayer(actual_match,player_nick_name)
+                let player_nickname = this._getPlayerNickname(line);
+                this.registerPlayer(actual_match,player_nickname)
             }
             if(line.includes("Kill")){
                 let line_split = line.split(":")[3].split(" killed ");
@@ -74,7 +74,7 @@ class Report {
     }
 
     //private functions
-    _getPlayerNickName(line){
+    _getPlayerNickname(line){
         return line.split("n\\")[1].split("\\")[0];
     }
 

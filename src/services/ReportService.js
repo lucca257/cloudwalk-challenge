@@ -74,6 +74,10 @@ class Report {
     }
 
     //private functions
+    _getPlayerNickName(line){
+        return line.split("n\\")[1].split("\\")[0];
+    }
+
     countTotalKills(match){
         this.matches[match - 1].total_kills += 1;
     }

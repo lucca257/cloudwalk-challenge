@@ -39,8 +39,31 @@ describe('unit report game test', () => {
         expect(match_players_list.length).toStrictEqual(2)
     });
 
-    //
-    // test('should register player kills', () => {});
+    test('should register player kills', () => {
+        const mock_match_log_data = [
+            "22:06 Kill: 2 3 7: Isgalamido killed Mocinha by MOD_ROCKET_SPLASH",
+            "22:18 Kill: 2 2 7: Isgalamido killed Isgalamido by MOD_ROCKET_SPLASH",
+            "22:40 Kill: 2 2 7: Isgalamido killed Isgalamido by MOD_ROCKET_SPLASH",
+            "22:18 Kill: 2 2 7: Mocinha killed Isgalamido by MOD_ROCKET_SPLASH",
+        ]
+        const expected_result = [
+            {
+                player: 'Isgalamido',
+                kills: 3
+            },
+            {
+                player: 'Mocinha',
+                kills: 1
+            }
+        ]
+        ReportService._initMatch(1)
+        mock_match_log_data.forEach(line => {
+            const kill_information = ReportService._getKillInformation(line)
+            ReportService.registerKill(1, kill_information.killer, kill_information.killed)
+        })
+        const match_players_kills = ReportService.matches[0].kills
+        expect(match_players_kills).toStrictEqual(expected_result)
+    });
     //
     // test('should discount player kills when die by world', () => {});
     //

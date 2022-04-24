@@ -17,6 +17,7 @@ class Report {
             if(line.includes("Kill")){
                 const kill_info = this._getKillInformation(line)
                 this.registerKill(actual_match, kill_info.killer, kill_info.killed)
+                this.countTotalKills(actual_match)
                 this.registerDeathCauses(actual_match, kill_info.cause);
             }
         }
@@ -26,12 +27,12 @@ class Report {
     registerPlayer(match, nick_name){
         let players = this.matches[match - 1].players
         players.push(nick_name);
+        //prevent register the same player twice
         this.matches[match - 1].players = [...new Set(players)];
     }
 
     registerKill(match, who_killed, who_died){
         let remove_kill = false;
-        this.countTotalKills(match)
         if(who_killed === "<world>"){
             who_killed = who_died
             remove_kill = true;

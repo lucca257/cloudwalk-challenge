@@ -74,10 +74,6 @@ class Report {
     }
 
     //private functions
-    _getPlayerNickname(line){
-        return line.split("n\\")[1].split("\\")[0];
-    }
-
     countTotalKills(match){
         this.matches[match - 1].total_kills += 1;
     }
@@ -92,6 +88,21 @@ class Report {
 
     findMatchDeathCauses(match, death_type) {
         return this.matches[match - 1].death_causes.find(el => el.cause === death_type) ?? false
+    }
+
+    _getPlayerNickname(line){
+        return line.split("n\\")[1].split("\\")[0];
+    }
+
+    _getKillInformation(line) {
+        let line_split = line.split(":")[3].split(" killed ");
+        let killer = this.removeSpaces(line_split[0]);
+        line_split = line_split[1].split(" by ");
+        return {
+            killer: killer,
+            killed: this.removeSpaces(line_split[0]),
+            death_cause: this.removeSpaces(line_split[1]),
+        };
     }
 }
 module.exports = Report;

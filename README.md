@@ -10,6 +10,10 @@ This project was implemented with docker, you just need to build the container f
 
 > docker-compose up
 
+if you dont want to use the docker image, you just need to type:
+
+> npm start
+
 ## Api Docs
 
 The Api have two routes. One responsible to show game reports and another with the rank by kills

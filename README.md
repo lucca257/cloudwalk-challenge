@@ -4,6 +4,21 @@ technical challenge by cloudwalk. all the requirements can be found here.
 
 ## Project explaning
 
+### coments
+I tried to create my project more organized, reusable, and flexible as possible. **I have tried to apply solid principles with TDD.** Explaining the folder structure:
+
+#### controllers
+This folder is responsible for managing all request logic that will be sent to the routes.
+
+#### services
+This folder is responsible for separating all business logic. I have tried to follow solid principles, isolating everything.
+
+#### logs
+This folder is responsible for the quake log file that we are analyzing.
+
+#### tests
+In my opinion one of the most interesting parts of this project. I tried to follow the TDD principles, writing tests and mocks for every single component of this project.
+
 ## Project settings
 
 This project was implemented with docker, you just need to build the container for the project works.

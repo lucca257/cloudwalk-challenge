@@ -94,3 +94,12 @@ The Api have two routes. One responsible to show game reports and another with t
     ]
   }
   ```
+  ## How run the tests
+  
+  if you are using the docker image  run this comand:
+  
+  > docker exec -it cloudwalk-challenge_app_1 sh   
+
+ then you just need to run the test comand and see the suit tests
+ 
+ > npm test

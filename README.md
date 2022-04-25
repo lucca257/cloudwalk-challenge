@@ -4,6 +4,12 @@ technical challenge by cloudwalk. all the requirements can be found here.
 
 ## Project explaning
 
+## Project settings
+
+This project was implemented with docker, you just need to build the container for the project works.
+
+> docker-compose up
+
 ## Api Docs
 
 The Api have two routes. One responsible to show game reports and another with the rank by kills
@@ -96,10 +102,12 @@ The Api have two routes. One responsible to show game reports and another with t
   ```
   ## How run the tests
   
-  if you are using the docker image  run this comand:
+  using docker:
   
-  > docker exec -it cloudwalk-challenge_app_1 sh   
+  Atention: the container should be runing
+  
+  >  docker exec -it cloudwalk-challenge_app_1 sh -c "npm test"       
 
- then you just need to run the test comand and see the suit tests
+  if you are not using docker, just type:
  
  > npm test

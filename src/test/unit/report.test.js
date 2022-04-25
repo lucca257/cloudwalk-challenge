@@ -1,7 +1,7 @@
 const Report = require('../../services/ReportService');
 var ReportService = new Report();
 
-describe('unit report game test', () => {
+describe('report game test', () => {
     afterEach(() => {
         ReportService = new Report();
     });

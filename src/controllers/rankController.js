@@ -5,7 +5,7 @@ const GameRank = require('../services/RankService');
 module.exports = {
   async index(req, res, next) {
     try{
-      const file_path = './src/files/quake.log';
+      const file_path = './src/logs/quake.log';
       const fileReaderService = new FileReader(file_path);
       const reportService = new Report();
       const gameRankService = new GameRank();
